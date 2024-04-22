@@ -1,17 +1,74 @@
-﻿// See https://aka.ms/new-console-template for more information
+// See https://aka.ms/new-console-template for more information
 
 
-void draw(string[] arr1, string[] arr2, string[] arr3) 
-{ 
-Console.WriteLine("   |   |   ");
-Console.WriteLine(" {0} | {1} | {2} ", arr1[0], arr1[1], arr1[2]);
-Console.WriteLine("___|___|___");
-Console.WriteLine("   |   |   ");
-Console.WriteLine(" {0} | {1} | {2} ", arr2[0], arr2[1], arr2[2]);
-Console.WriteLine("___|___|___");
-Console.WriteLine("   |   |   ");
-Console.WriteLine(" {0} | {1} | {2} ", arr3[0], arr3[1], arr3[2]);
-Console.WriteLine("   |   |   ");
+using System.Drawing;
+
+void draw(string[] arr1, string[] arr2, string[] arr3)
+{
+    color(arr1[0]);
+    Console.Write("   |");
+    color(arr1[1]);
+    Console.Write("   |");
+    color(arr1[2]);
+    Console.Write("   ");
+    Console.WriteLine();
+    color(arr1[0]);
+    Console.Write(" {0} |", arr1[0]);
+    color(arr1[1]);
+    Console.Write(" {0} |", arr1[1]);
+    color(arr1[2]);
+    Console.Write(" {0} ", arr1[2]);
+    Console.WriteLine();
+    color(arr1[0]);
+    Console.Write("___|");
+    color(arr1[1]);
+    Console.Write("___|");
+    color(arr1[2]);
+    Console.Write("___");
+    Console.WriteLine();
+    color(arr2[0]);
+    Console.Write("   |");
+    color(arr2[1]);
+    Console.Write("   |");
+    color(arr2[2]);
+    Console.Write("   ");
+    Console.WriteLine();
+    color(arr2[0]);
+    Console.Write(" {0} |", arr2[0]);
+    color(arr2[1]);
+    Console.Write(" {0} |", arr2[1]);
+    color(arr2[2]);
+    Console.Write(" {0} ", arr2[2]);
+    Console.WriteLine();
+    color(arr2[0]);
+    Console.Write("___|");
+    color(arr2[1]);
+    Console.Write("___|");
+    color(arr2[2]);
+    Console.Write("___");
+    Console.WriteLine();
+    color(arr3[0]);
+    Console.Write("   |");
+    color(arr3[1]);
+    Console.Write("   |");
+    color(arr3[2]);
+    Console.Write("   ");
+    Console.WriteLine();
+    color(arr3[0]);
+    Console.Write(" {0} |", arr3[0]);
+    color(arr3[1]);
+    Console.Write(" {0} |", arr3[1]);
+    color(arr3[2]);
+    Console.Write(" {0} ", arr3[2]);
+    Console.WriteLine();
+    color(arr3[0]);
+    Console.Write("   |");
+    color(arr3[1]);
+    Console.Write("   |");
+    color(arr3[2]);
+    Console.Write("   ");
+    Console.WriteLine();
+    Console.BackgroundColor = ConsoleColor.Black;
 }
 
 bool findawinner(string[] arr1, string[] arr2, string[] arr3)
@@ -81,11 +138,26 @@ bool findawinner(string[] arr1, string[] arr2, string[] arr3)
     {
         Console.WriteLine("Игрок2 выиграл");
     }
-    else 
+    else
     {
-    winned = false;
+        winned = false;
     }
     return winned;
+}
+void color(string symbol)
+{
+    if (symbol == "o")
+    {
+        Console.BackgroundColor = ConsoleColor.Red;
+    }
+    else if (symbol == "x")
+    {
+        Console.BackgroundColor = ConsoleColor.Green;
+    }
+    else
+    {
+        Console.BackgroundColor = ConsoleColor.Black;
+    }
 }
 void choice(string[] arr1, string[] arr2, string[] arr3, string symbol, string position)
 {
@@ -121,17 +193,20 @@ for (int i = 0; i < 9; i++)
     draw(arr1, arr2, arr3);
     string position = Console.ReadLine();
     choice(arr1, arr2, arr3, symbol, position);
-    if (findawinner(arr1, arr2, arr3))
-    {
-        break;
-    }
+     
+   
     if (symbol == "o")
     {
         symbol = "x";
     }
-    else if (symbol == "x") 
+    else if (symbol == "x")
     {
         symbol = "o";
     }
-    Console.Clear();
+    if (findawinner(arr1, arr2, arr3))
+    {
+        draw(arr1, arr2, arr3);
+        break;
+    }
+   Console.Clear();
 }
